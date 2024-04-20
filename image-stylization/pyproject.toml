@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "image-stylization"
+version = "0.1.0"
+description = ""
+authors = ["Nick Amoscato <nick@amoscato.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+tensorflow = "^2.16.1"
+numpy = "^1.26.4"
+tensorflow-hub = "^0.16.1"
+isort = "^5.13.2"
+black = "^24.3.0"
+pillow = "^10.3.0"
+
+[tool.poetry.scripts]
+image_stylization = "image_stylization.main:main"
+
+[tool.isort]
+profile = "black"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
