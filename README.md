@@ -1,1 +1,1 @@
-# Eric Carle Legacy
+# Mrs. Amoscato's Legacy
