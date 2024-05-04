@@ -1,3 +1,4 @@
+import { Cover } from "./Cover";
 import { Yearbook, studentsFromImageDir } from "./Yearbook";
 
 export default async function Home() {
@@ -5,6 +6,7 @@ export default async function Home() {
 
   return (
     <main>
+      <Cover />
       <Yearbook students={students} />
     </main>
   );

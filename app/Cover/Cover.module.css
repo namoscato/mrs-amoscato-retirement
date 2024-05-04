@@ -1,0 +1,63 @@
+.root {
+  padding-top: 4vh;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5em;
+  margin: 0;
+}
+
+.titleTeacherBr {
+  display: none;
+}
+
+.subtitle {
+  font-size: 1em;
+  margin-top: 1em;
+}
+
+.muralImage {
+  height: auto;
+  margin-top: 3vh;
+  max-width: 46rem;
+  width: 100%;
+}
+
+@media screen and (min-width: 33rem) {
+  .root {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (min-width: 68rem) {
+  .root {
+    align-items: flex-end;
+    display: flex;
+    padding: 3rem 3rem 0;
+    text-align: left;
+  }
+
+  .content {
+    align-items: flex-start;
+    display: flex;
+  }
+
+  .titleTeacherBr {
+    display: inline;
+  }
+
+  .muralImage {
+    margin-top: 5vh;
+    width: 45vw;
+  }
+}
+
+@media screen and (min-width: 90rem) {
+  .root {
+    font-size: 2em;
+    height: 90vh;
+    min-height: 42rem;
+    padding: 0 4%;
+  }
+}
