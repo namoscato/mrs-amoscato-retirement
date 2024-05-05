@@ -1,0 +1,22 @@
+.root {
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 2em;
+  font-variation-settings:
+    "COUT" 120,
+    "JMBL" 200,
+    "STGR" 100;
+  line-height: 1;
+  margin-right: 0.3em;
+  opacity: 0.5;
+  padding: 0;
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+
+  &:not([disabled]):hover {
+    opacity: 1;
+  }
+}

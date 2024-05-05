@@ -4,6 +4,6 @@
   padding: 0;
 }
 
-.listInactive {
-  filter: grayscale(1);
+.inactive {
+  filter: grayscale(1) blur(3px);
 }

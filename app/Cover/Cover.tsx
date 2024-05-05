@@ -1,7 +1,7 @@
 import Image from "next/image";
 import muralImage from "../../public/images/amoscato_mural.png";
 import styles from "./Cover.module.css";
-import { PickllleHeading } from "./PickllleHeading";
+import { PickllleHeading } from "../PickllleHeading";
 
 export const Cover = () => {
   return (
@@ -28,7 +28,7 @@ export const Cover = () => {
             stagger={150}
             className={styles.subtitle}
           >
-            Mrs. Karen Amoscato&lsquo;s educational legacy
+            Mrs. Karen Amoscato&lsquo;s education legacy
           </PickllleHeading>
         </div>
         <Image
