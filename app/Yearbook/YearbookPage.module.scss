@@ -74,6 +74,14 @@ $minHeightBreakpoint: $padding + $figureMaxHeight;
   margin-bottom: 0.4em;
 }
 
+.mobileNavigation {
+  display: flex;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 @media screen and (min-width: 56rem) {
   .container {
     align-items: center;
@@ -123,6 +131,10 @@ $minHeightBreakpoint: $padding + $figureMaxHeight;
 
   .navigationButtons {
     display: block;
+  }
+
+  .mobileNavigation {
+    display: none;
   }
 }
 

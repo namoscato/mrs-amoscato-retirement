@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { PickllleHeading } from "../PickllleHeading";
+import { CloseButton } from "./CloseButton";
+import { MobileNavigationButton } from "./MobileNavigationButton";
 import { NavigationButton } from "./NavigationButton";
 import { StyleSourceSummary } from "./StyleSourceSummary";
 import styles from "./YearbookPage.module.scss";
@@ -73,6 +75,11 @@ export const YearbookPage = ({
           </figcaption>
         </figure>
       </div>
+      <div className={styles.mobileNavigation}>
+        <MobileNavigationButton direction="Previous" onClick={onPrevious} />
+        <MobileNavigationButton direction="Next" onClick={onNext} />
+      </div>
+      <CloseButton onClick={onClose} />
     </div>
   );
 };

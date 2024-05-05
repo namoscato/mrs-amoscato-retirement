@@ -1,4 +1,4 @@
-import styles from "./NavigationButton.module.scss";
+import styles from "./MobileNavigationButton.module.scss";
 import { useNavigationLabel } from "./hooks/useNavigationLabel";
 
 interface Props {
@@ -6,7 +6,7 @@ interface Props {
   onClick: (() => void) | undefined;
 }
 
-export const NavigationButton = ({ direction, onClick }: Props) => {
+export const MobileNavigationButton = ({ direction, onClick }: Props) => {
   const label = useNavigationLabel(direction);
 
   return (
@@ -15,8 +15,6 @@ export const NavigationButton = ({ direction, onClick }: Props) => {
       disabled={!onClick}
       onClick={onClick}
       title={onClick ? label.value : undefined}
-    >
-      {label.character}
-    </button>
+    />
   );
 };
