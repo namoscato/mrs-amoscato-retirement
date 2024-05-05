@@ -3,15 +3,26 @@ import { useEffect } from "react";
 interface Props {
   onPrevious: (() => void) | undefined;
   onNext: (() => void) | undefined;
+  onClose: () => void;
 }
 
-export function useKeyboardNavigation({ onPrevious, onNext }: Props): void {
+export function useKeyboardNavigation({
+  onPrevious,
+  onNext,
+  onClose,
+}: Props): void {
   useEffect(() => {
     const handleKeydown = ({ key }: KeyboardEvent) => {
-      if ("ArrowLeft" === key) {
-        onPrevious?.();
-      } else if ("ArrowRight" === key) {
-        onNext?.();
+      switch (key) {
+        case "ArrowLeft":
+          onPrevious?.();
+          break;
+        case "ArrowRight":
+          onNext?.();
+          break;
+        case "Escape":
+          onClose();
+          break;
       }
     };
 
@@ -20,5 +31,5 @@ export function useKeyboardNavigation({ onPrevious, onNext }: Props): void {
     return () => {
       document.removeEventListener("keydown", handleKeydown);
     };
-  }, [onNext, onPrevious]);
+  }, [onClose, onNext, onPrevious]);
 }

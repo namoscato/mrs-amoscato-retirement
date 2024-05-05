@@ -1,0 +1,10 @@
+.root {
+  background: none;
+  border: none;
+  flex: 1;
+  padding: 0;
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+}

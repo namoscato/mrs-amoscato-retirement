@@ -1,5 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 
+import { PickllleHeading } from "../PickllleHeading";
+import { CloseButton } from "./CloseButton";
+import { MobileNavigationButton } from "./MobileNavigationButton";
+import { NavigationButton } from "./NavigationButton";
 import { StyleSourceSummary } from "./StyleSourceSummary";
 import styles from "./YearbookPage.module.scss";
 import { useKeyboardNavigation } from "./hooks/useKeyboardNavigation";
@@ -19,10 +23,10 @@ export const YearbookPage = ({
   onNext,
   onClose,
 }: Props) => {
-  useKeyboardNavigation({ onNext, onPrevious });
+  useKeyboardNavigation({ onNext, onPrevious, onClose });
 
   return (
-    <div className={styles.root} onClick={onClose}>
+    <div className={styles.root}>
       <img
         className={styles.backgroundImage}
         src={student.portraitImage.styledSrc}
@@ -30,11 +34,13 @@ export const YearbookPage = ({
       />
       <div className={styles.container}>
         <figure className={styles.figure}>
-          <img
-            className={styles.portraitImage}
-            src={student.portraitImage.src}
-            alt="Student portrait"
-          />
+          <div className={styles.portrait}>
+            <img
+              className={styles.portraitImage}
+              src={student.portraitImage.src}
+              alt="Student portrait"
+            />
+          </div>
           <figcaption className={styles.figcaption}>
             <img
               className={styles.styledPortraitImage}
@@ -42,8 +48,26 @@ export const YearbookPage = ({
               alt="Styled student head shot"
             />
             <div className={styles.caption}>
-              <h2>Franklin Elementary School</h2>
-              <h1>{schoolYearFromYear(student.year)} School Year</h1>
+              <div className={styles.navigationButtons}>
+                <NavigationButton direction="Previous" onClick={onPrevious} />
+                <NavigationButton direction="Next" onClick={onNext} />
+              </div>
+              <PickllleHeading
+                component="h2"
+                cutout={200}
+                jumble={150}
+                stagger={200}
+              >
+                Franklin Elementary School
+              </PickllleHeading>
+              <PickllleHeading
+                component="h1"
+                cutout={200}
+                jumble={150}
+                stagger={200}
+              >
+                {schoolYearFromYear(student.year)} School Year
+              </PickllleHeading>
               <p>
                 styled via <StyleSourceSummary name={student.styleImage.name} />
               </p>
@@ -51,6 +75,11 @@ export const YearbookPage = ({
           </figcaption>
         </figure>
       </div>
+      <div className={styles.mobileNavigation}>
+        <MobileNavigationButton direction="Previous" onClick={onPrevious} />
+        <MobileNavigationButton direction="Next" onClick={onNext} />
+      </div>
+      <CloseButton onClick={onClose} />
     </div>
   );
 };
