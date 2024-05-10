@@ -8,12 +8,18 @@ import { YearbookThumbnail } from "./YearbookThumbnail";
 import { useActiveIndexState } from "./hooks/useActiveIndexState";
 import { Student } from "./utils/studentsFromImageDir";
 
+const STUDENT_SEARCH_PARAM = "student";
+
 interface Props {
   students: Student[];
 }
 
 export const Yearbook = ({ students }: Props) => {
-  const activeIndex = useActiveIndexState({ max: students.length });
+  const activeIndex = useActiveIndexState({
+    students,
+    searchParam: STUDENT_SEARCH_PARAM,
+  });
+
   const activeStudent = students[activeIndex.value];
 
   return (

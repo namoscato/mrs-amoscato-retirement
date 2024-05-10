@@ -1,7 +1,10 @@
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
+import { Student } from "../utils/studentsFromImageDir";
 
 interface Props {
-  max: number;
+  students: Pick<Student, "id">[];
+  searchParam: string;
 }
 
 interface Result {
@@ -12,35 +15,50 @@ interface Result {
   clear: () => void;
 }
 
-export function useActiveIndexState({ max }: Props): Result {
-  const [value, setValue] = useState(-1);
+export function useActiveIndexState({ students, searchParam }: Props): Result {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const [index, setIndex] = useState(() =>
+    students.findIndex(({ id }) => id === searchParams.get(searchParam)),
+  );
+  const setValue = useCallback(
+    (value: number) => {
+      setIndex(value);
+
+      const studentId = students[value]?.id;
+      router.replace(studentId ? `?${searchParam}=${studentId}` : "/");
+    },
+    [router, searchParam, students],
+  );
 
   const previous = useMemo(() => {
-    if (value <= 0) {
+    if (index <= 0) {
       return;
     }
 
     return () => {
-      setValue(value - 1);
+      setValue(index - 1);
     };
-  }, [value]);
+  }, [index, setValue]);
 
+  const max = students.length;
   const next = useMemo(() => {
-    if (value >= max - 1) {
+    if (index >= max - 1) {
       return;
     }
 
     return () => {
-      setValue(value + 1);
+      setValue(index + 1);
     };
-  }, [value, max]);
+  }, [index, max, setValue]);
 
   const clear = useCallback(() => {
     setValue(-1);
-  }, []);
+  }, [setValue]);
 
   return {
-    value,
+    value: index,
     setValue,
     previous,
     next,
