@@ -6,6 +6,7 @@ import { MobileNavigationButton } from "./MobileNavigationButton";
 import { NavigationButton } from "./NavigationButton";
 import { StyleSourceSummary } from "./StyleSourceSummary";
 import styles from "./YearbookPage.module.scss";
+import { useDisableScroll } from "./hooks/useDisableScroll";
 import { useKeyboardNavigation } from "./hooks/useKeyboardNavigation";
 import { schoolYearFromYear } from "./utils/schoolYearFromYear";
 import { Student } from "./utils/studentsFromImageDir";
@@ -23,6 +24,7 @@ export const YearbookPage = ({
   onNext,
   onClose,
 }: Props) => {
+  useDisableScroll();
   useKeyboardNavigation({ onNext, onPrevious, onClose });
 
   return (
