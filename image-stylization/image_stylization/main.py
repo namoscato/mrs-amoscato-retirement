@@ -20,10 +20,8 @@ def crop_center(image):
 
 
 @functools.lru_cache(maxsize=None)
-def load_image(image_url, image_size=(256, 256)):
+def load_image(image_path, image_size=(256, 256)):
     """Loads and pre-processes images."""
-    # Cache image file locally.
-    image_path = tf.keras.utils.get_file(os.path.basename(image_url)[-128:], image_url)
     # Load and convert to float32 numpy array, add batch dimension, and normalize to range [0, 1].
     img = tf.io.decode_image(tf.io.read_file(image_path), channels=3, dtype=tf.float32)[
         tf.newaxis, ...
