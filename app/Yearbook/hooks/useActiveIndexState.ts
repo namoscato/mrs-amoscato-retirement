@@ -27,7 +27,9 @@ export function useActiveIndexState({ students, searchParam }: Props): Result {
       setIndex(value);
 
       const studentId = students[value]?.id;
-      router.replace(studentId ? `?${searchParam}=${studentId}` : "/");
+      router.replace(studentId ? `?${searchParam}=${studentId}` : "/", {
+        scroll: false,
+      });
     },
     [router, searchParam, students],
   );
