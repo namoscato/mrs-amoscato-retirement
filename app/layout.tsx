@@ -10,7 +10,8 @@ const pickllleFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Mrs. Amoscato‘s Legacy",
+  title: "Mrs. Amoscato‘s Education Legacy",
+  description: "32 years of imagining, creating, and learning.",
   robots: "noindex",
   icons: [
     {
