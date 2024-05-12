@@ -1,0 +1,40 @@
+.root {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  outline: none;
+  padding: 0;
+  position: relative;
+}
+
+.image {
+  border: 1.5vh solid #fff;
+  width: 100%;
+}
+
+.imageActive {
+  box-shadow: 4px 4px 20px rgb(0 0 0 / 30%);
+}
+
+.styleImage {
+  position: relative;
+  transform: rotate(-1deg);
+}
+
+.styleImageActive {
+  z-index: 1;
+}
+
+.portraitImage {
+  left: 0.5rem;
+  position: absolute;
+  top: 0;
+  transform: rotate(3deg);
+}
+
+@media screen and (min-height: 52rem) {
+  .image {
+    border-width: 0.7rem;
+  }
+}
