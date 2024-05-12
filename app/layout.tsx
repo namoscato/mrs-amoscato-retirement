@@ -12,6 +12,7 @@ const pickllleFont = localFont({
 export const metadata: Metadata = {
   title: "Mrs. Amoscato‘s Education Legacy",
   description: "32 years of imagining, creating, and learning.",
+  metadataBase: maybeGetMetadataBase(),
   robots: "noindex",
   icons: [
     {
@@ -54,4 +55,23 @@ export default function RootLayout({ children }: Props) {
       <body className={pickllleFont.className}>{children}</body>
     </html>
   );
+}
+
+/**
+ * Return the `metadataBase` value in production.
+ *
+ * Leverages new `VERCEL_PROJECT_PRODUCTION_URL` system environment variable, mimicking
+ * unreleased v14.3.0 behavior.
+ *
+ * @see https://github.com/vercel/next.js/pull/65089
+ * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#default-value
+ */
+function maybeGetMetadataBase(): URL | undefined {
+  if ("production" !== process.env.VERCEL_ENV) {
+    return undefined;
+  }
+
+  const origin = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
+  return origin ? new URL(`https://${origin}`) : undefined;
 }
