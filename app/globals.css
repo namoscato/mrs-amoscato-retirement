@@ -1,6 +1,11 @@
+:root {
+  --color-black: #0d0d0d;
+  --color-white: #fefefe;
+}
+
 body {
-  color: #0d0d0d;
-  background-color: #fefefe;
+  color: var(--color-black);
+  background-color: var(--color-white);
 }
 
 a {
