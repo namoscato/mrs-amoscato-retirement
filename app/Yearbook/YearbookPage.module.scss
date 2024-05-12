@@ -42,10 +42,7 @@ $minHeightBreakpoint: $padding + $figureMaxHeight;
 }
 
 .styledPortraitImage {
-  border: 1.5vh solid #fff;
-  box-shadow: 4px 4px 20px rgb(0 0 0 / 30%);
   display: none;
-  transform: rotate(3deg);
   width: 35vh;
 }
 
@@ -176,7 +173,6 @@ $minHeightBreakpoint: $padding + $figureMaxHeight;
   }
 
   .styledPortraitImage {
-    border-width: 0.7rem;
     width: 18rem;
   }
 }

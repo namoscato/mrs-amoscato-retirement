@@ -5,6 +5,7 @@ import { CloseButton } from "./CloseButton";
 import { MobileNavigationButton } from "./MobileNavigationButton";
 import { NavigationButton } from "./NavigationButton";
 import { StyleSourceSummary } from "./StyleSourceSummary";
+import { StyledPortraitImage } from "./StyledPortraitImage";
 import styles from "./YearbookPage.module.scss";
 import { useDisableScroll } from "./hooks/useDisableScroll";
 import { useKeyboardNavigation } from "./hooks/useKeyboardNavigation";
@@ -44,10 +45,10 @@ export const YearbookPage = ({
             />
           </div>
           <figcaption className={styles.figcaption}>
-            <img
+            <StyledPortraitImage
               className={styles.styledPortraitImage}
-              src={student.portraitImage.styledSrc}
-              alt="Styled student head shot"
+              styleImageSrc={student.styleImage.src}
+              portraitImageSrc={student.portraitImage.styledSrc}
             />
             <div className={styles.caption}>
               <div className={styles.navigationButtons}>
