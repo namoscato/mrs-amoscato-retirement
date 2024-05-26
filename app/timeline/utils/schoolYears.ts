@@ -59,7 +59,7 @@ const schoolYears: Omit<SchoolYear, "styleImage">[] = [
     school: School.Espe,
   }),
   {
-    year: 2002,
+    year: 2001,
     role: Role.Kindergarten,
     school: School.BradfordWoods,
   },
