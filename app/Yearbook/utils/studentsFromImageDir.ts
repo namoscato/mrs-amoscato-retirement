@@ -1,12 +1,12 @@
+import { StyleName, isStyleName } from "@/app/timeline/utils/styleNames";
 import { promises as fs } from "fs";
 import { orderBy } from "lodash";
 import { join } from "path";
-import { StyleName, isStyleName } from "./styleNames";
 
 enum ImageDir {
   Portraits = "portraits",
   StyledPortraits = "styled-portraits",
-  Styles = "styles",
+  Styles = "cropped-styles",
 }
 
 export interface Student {

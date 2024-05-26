@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { PickllleHeading } from "../PickllleHeading";
+import { schoolYearFromYear } from "../utils/schoolYearFromYear";
 import { CloseButton } from "./CloseButton";
 import { MobileNavigationButton } from "./MobileNavigationButton";
 import { NavigationButton } from "./NavigationButton";
@@ -9,7 +10,6 @@ import { StyledPortraitImage } from "./StyledPortraitImage";
 import styles from "./YearbookPage.module.scss";
 import { useDisableScroll } from "./hooks/useDisableScroll";
 import { useKeyboardNavigation } from "./hooks/useKeyboardNavigation";
-import { schoolYearFromYear } from "./utils/schoolYearFromYear";
 import { Student } from "./utils/studentsFromImageDir";
 
 interface Props {
@@ -55,20 +55,10 @@ export const YearbookPage = ({
                 <NavigationButton direction="Previous" onClick={onPrevious} />
                 <NavigationButton direction="Next" onClick={onNext} />
               </div>
-              <PickllleHeading
-                component="h2"
-                cutout={200}
-                jumble={150}
-                stagger={200}
-              >
+              <PickllleHeading component="h2">
                 Franklin Elementary School
               </PickllleHeading>
-              <PickllleHeading
-                component="h1"
-                cutout={200}
-                jumble={150}
-                stagger={200}
-              >
+              <PickllleHeading component="h1">
                 {schoolYearFromYear(student.year)} School Year
               </PickllleHeading>
               <p>

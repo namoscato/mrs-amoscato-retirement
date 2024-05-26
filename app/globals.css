@@ -3,11 +3,26 @@
   --color-white: #fefefe;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   color: var(--color-black);
   background-color: var(--color-white);
 }
 
+h1,
+h2,
+h3 {
+  font-weight: normal;
+}
+
 a {
   color: inherit;
+}
+
+header {
+  line-height: 1;
 }

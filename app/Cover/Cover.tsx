@@ -5,7 +5,7 @@ import { PickllleHeading } from "../PickllleHeading";
 
 export const Cover = () => {
   return (
-    <header className={styles.root}>
+    <div className={styles.root}>
       <div className={styles.content}>
         <div>
           <PickllleHeading
@@ -38,6 +38,6 @@ export const Cover = () => {
           className={styles.muralImage}
         />
       </div>
-    </header>
+    </div>
   );
 };
