@@ -1,12 +1,10 @@
-import { styleNameSourceMap } from "@/app/Yearbook/utils/styleNameSourceMap";
-import { StyleName } from "@/app/Yearbook/utils/styleNames";
-import { orderBy, sortBy } from "lodash";
+import { StyleImage, styleImages } from "./styleImages";
 
 export interface SchoolYear {
   year: number;
   role: Role;
   school: School;
-  styleName: StyleName;
+  styleImage: StyleImage;
 }
 
 enum Role {
@@ -27,7 +25,7 @@ enum School {
   StAlexis = "St. Alexis",
 }
 
-const schoolYears: Omit<SchoolYear, "styleName">[] = [
+const schoolYears: Omit<SchoolYear, "styleImage">[] = [
   {
     year: 1982,
     role: Role.Kindergarten,
@@ -79,24 +77,20 @@ const schoolYears: Omit<SchoolYear, "styleName">[] = [
   }),
 ];
 
-const styleNames = sortBy(Object.entries(styleNameSourceMap), ([, { title }]) =>
-  title.toLowerCase().replace(/^(“|the )/, ""),
-).map<StyleName>(([name]) => name as StyleName);
-
 export const SCHOOL_YEARS = schoolYears.map<SchoolYear>((schoolYear, index) => {
-  const styleName = styleNames[index];
+  const styleImage = styleImages[index];
 
-  if (!styleName) {
-    throw new Error(`styleNames out of bounds at index ${index}`);
+  if (!styleImage) {
+    throw new Error(`styleImages out of bounds at index ${index}`);
   }
 
   return {
     ...schoolYear,
-    styleName,
+    styleImage,
   };
 });
 
-interface SchoolYearRange extends Omit<SchoolYear, "year" | "styleName"> {
+interface SchoolYearRange extends Omit<SchoolYear, "year" | "styleImage"> {
   startYear: number;
   endYear: number;
 }
@@ -105,11 +99,11 @@ function yearsFromRange({
   startYear,
   endYear,
   ...schoolYear
-}: SchoolYearRange): Omit<SchoolYear, "styleName">[] {
+}: SchoolYearRange): Omit<SchoolYear, "styleImage">[] {
   return Array.from(
     { length: 1 + endYear - startYear },
     (_, index) => startYear + index,
-  ).map<Omit<SchoolYear, "styleName">>((year) => ({
+  ).map<Omit<SchoolYear, "styleImage">>((year) => ({
     ...schoolYear,
     year,
   }));

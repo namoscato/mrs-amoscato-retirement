@@ -16,11 +16,13 @@ export const Timeline = () => {
         {SCHOOL_YEARS.slice()
           .reverse()
           .map((schoolYear, index) => (
-            <TimelineYear
-              key={index}
-              number={SCHOOL_YEARS.length - index}
-              schoolYear={schoolYear}
-            />
+            <li key={schoolYear.year}>
+              <TimelineYear
+                number={SCHOOL_YEARS.length - index}
+                schoolYear={schoolYear}
+                imagePriority={index < 2}
+              />
+            </li>
           ))}
       </ul>
     </div>

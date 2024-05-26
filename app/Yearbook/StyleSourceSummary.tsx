@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import styles from "./StyleSourceSummary.module.css";
-import { styleNameSourceMap } from "./utils/styleNameSourceMap";
-import { StyleName } from "./utils/styleNames";
+import { styleNameSourceMap } from "../timeline/utils/styleNameSourceMap";
+import { StyleName } from "../timeline/utils/styleNames";
 
 interface Props {
   name: StyleName;

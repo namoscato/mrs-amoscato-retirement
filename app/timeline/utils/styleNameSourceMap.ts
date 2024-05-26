@@ -1,4 +1,4 @@
-import { StyleName } from "./styleNames";
+import type { StyleName } from "./styleNames";
 
 export interface StyleSource {
   type: "book" | "illustration";
