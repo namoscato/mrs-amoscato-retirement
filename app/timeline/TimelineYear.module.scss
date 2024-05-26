@@ -1,0 +1,27 @@
+.figure {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.figureImage {
+  border-bottom: 1px solid #f0f0f0;
+  border-top: 1px solid #f0f0f0;
+  height: calc(100vh - 17rem);
+}
+
+.figureCaption {
+  > h1 {
+    font-size: 1.6em;
+    margin: 1em 0 0;
+  }
+
+  > h2 {
+    font-size: 1.3em;
+    margin: 0.4em 0;
+  }
+
+  > p {
+    margin: 0;
+  }
+}

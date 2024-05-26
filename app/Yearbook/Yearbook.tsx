@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import { Suspense } from "react";
 import { Cover } from "../Cover";
+import { Navigation } from "../Navigation";
 import styles from "./Yearbook.module.css";
 import { YearbookPage } from "./YearbookPage";
 import { YearbookThumbnail } from "./YearbookThumbnail";
@@ -70,7 +71,10 @@ const YearbookStaticContent = ({
 }: StaticContentProps) => {
   return (
     <div className={clsx({ [styles.inactive ?? ""]: isInactive })}>
-      <Cover />
+      <header>
+        <Navigation className={styles.navigation} />
+        <Cover />
+      </header>
       <ul className={styles.list}>
         {students.map((student, index) => (
           <YearbookThumbnail

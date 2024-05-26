@@ -7,3 +7,15 @@
 .inactive {
   filter: grayscale(1) blur(3px);
 }
+
+.navigation {
+  margin: 3vh 0 1rem;
+}
+
+@media screen and (min-width: 68rem) {
+  .navigation {
+    margin-top: 2rem;
+    position: fixed;
+    right: 2rem;
+  }
+}

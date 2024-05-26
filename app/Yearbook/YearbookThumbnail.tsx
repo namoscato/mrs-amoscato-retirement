@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./YearbookThumbnail.module.scss";
-import { schoolYearFromYear } from "./utils/schoolYearFromYear";
+import { schoolYearFromYear } from "../utils/schoolYearFromYear";
 import { Student } from "./utils/studentsFromImageDir";
 
 interface Props {

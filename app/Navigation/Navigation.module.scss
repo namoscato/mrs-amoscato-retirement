@@ -1,0 +1,12 @@
+.list {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  margin: 0;
+}
+
+@media screen and (min-width: 33rem) {
+  .root {
+    font-size: 1.5em;
+  }
+}

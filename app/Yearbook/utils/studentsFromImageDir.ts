@@ -6,7 +6,7 @@ import { StyleName, isStyleName } from "./styleNames";
 enum ImageDir {
   Portraits = "portraits",
   StyledPortraits = "styled-portraits",
-  Styles = "styles",
+  Styles = "cropped-styles",
 }
 
 export interface Student {
