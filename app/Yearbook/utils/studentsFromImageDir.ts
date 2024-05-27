@@ -1,3 +1,4 @@
+import { SCHOOL_YEARS, School } from "@/app/timeline/utils/schoolYears";
 import { StyleName, isStyleName } from "@/app/timeline/utils/styleNames";
 import { promises as fs } from "fs";
 import { orderBy } from "lodash";
@@ -13,6 +14,7 @@ export interface Student {
   id: string;
   year: number;
   index: number;
+  school: School;
   portraitImage: {
     src: string;
     styledSrc: string;
@@ -30,38 +32,52 @@ export async function studentsFromImageDir(
     join(process.cwd(), "public", imageDir, ImageDir.StyledPortraits),
   );
 
+  const yearSchoolMap = SCHOOL_YEARS.reduce<Map<number, School>>(
+    (map, { year, school }) => map.set(year, school),
+    new Map(),
+  );
+
   const students = styledPortraits.reduce<Student[]>(
     (result, styledPortrait) => {
       const imageParts = imageNameRegex.exec(styledPortrait);
 
-      if (imageParts) {
-        const [, year, index, styleName, styleImageSuffix] = imageParts;
-        const id = `${year}_${index}`;
-
-        if (!styleName) {
-          throw new Error(`Unexpected image name format: ${styledPortrait}`);
-        }
-
-        if (!isStyleName(styleName)) {
-          throw new Error(
-            `"${styledPortrait}" contains unknown style name: ${styleName}`,
-          );
-        }
-
-        result.push({
-          id,
-          year: Number(year),
-          index: Number(index),
-          portraitImage: {
-            src: `/${imageDir}/${ImageDir.Portraits}/${id}.jpg`,
-            styledSrc: `/${imageDir}/${ImageDir.StyledPortraits}/${styledPortrait}`,
-          },
-          styleImage: {
-            name: styleName,
-            src: `/${imageDir}/${ImageDir.Styles}/${styleName}${styleImageSuffix ?? ""}.jpg`,
-          },
-        });
+      if (!imageParts) {
+        return result;
       }
+
+      const [, year, index, styleName, styleImageSuffix] = imageParts;
+      const id = `${year}_${index}`;
+
+      if (!styleName) {
+        throw new Error(`Unexpected image name format: ${styledPortrait}`);
+      }
+
+      if (!isStyleName(styleName)) {
+        throw new Error(
+          `"${styledPortrait}" contains unknown style name: ${styleName}`,
+        );
+      }
+
+      const school = yearSchoolMap.get(Number(year));
+
+      if (!school) {
+        throw new Error(`No school found for year: ${year}`);
+      }
+
+      result.push({
+        id,
+        year: Number(year),
+        index: Number(index),
+        school,
+        portraitImage: {
+          src: `/${imageDir}/${ImageDir.Portraits}/${id}.jpg`,
+          styledSrc: `/${imageDir}/${ImageDir.StyledPortraits}/${styledPortrait}`,
+        },
+        styleImage: {
+          name: styleName,
+          src: `/${imageDir}/${ImageDir.Styles}/${styleName}${styleImageSuffix ?? ""}.jpg`,
+        },
+      });
 
       return result;
     },
