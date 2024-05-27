@@ -20,6 +20,7 @@ export const YearbookThumbnail = ({ student, onClick }: Props) => {
           className={styles.image}
           width={256}
           height={256}
+          unoptimized
         />
       </button>
     </li>
