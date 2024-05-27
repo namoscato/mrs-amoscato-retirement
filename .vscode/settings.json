@@ -6,7 +6,8 @@
     "Espe",
     "Liestman",
     "pickllle",
-    "tinify"
+    "tinify",
+    "unoptimized"
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[python]": {
