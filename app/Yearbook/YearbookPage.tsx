@@ -56,7 +56,7 @@ export const YearbookPage = ({
                 <NavigationButton direction="Next" onClick={onNext} />
               </div>
               <PickllleHeading component="h2">
-                Franklin Elementary School
+                {student.school} School
               </PickllleHeading>
               <PickllleHeading component="h1">
                 {schoolYearFromYear(student.year)} School Year

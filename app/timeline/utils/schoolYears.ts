@@ -15,7 +15,7 @@ enum Role {
   Art = "Art Specialist",
 }
 
-enum School {
+export enum School {
   AJMartin = "A.J. Martin Elementary",
   Liestman = "Liestman Elementary",
   Franklin = "Franklin Elementary",
