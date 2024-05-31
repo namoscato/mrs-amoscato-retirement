@@ -1,0 +1,24 @@
+.inactive {
+  filter: blur(3px);
+}
+
+.lightbox {
+  --yarl__color_backdrop: rgba(255, 255, 255, 0.85);
+  --yarl__color_button: rgba(13, 13, 13, 0.5);
+  --yarl__color_button_active: var(--color-black);
+  --yarl__button_filter: none;
+  --yarl__slide_captions_container_background: transparent;
+  --yarl__slide_captions_container_right: auto;
+  --yarl__slide_description_color: var(--color-black);
+
+  :global(.yarl__slide_image) {
+    border: 2.5vh solid #fff;
+    box-shadow: 1px 1px 10px rgb(0 0 0 / 20%);
+  }
+}
+
+@media screen and (min-height: 45rem) {
+  .lightbox :global(.yarl__slide_image) {
+    border-width: 1rem;
+  }
+}
