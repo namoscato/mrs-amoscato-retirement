@@ -1,6 +1,7 @@
 .root {
   background: none;
   border: none;
+  cursor: pointer;
   font: inherit;
   font-size: 2em;
   font-variation-settings:
@@ -12,11 +13,7 @@
   opacity: 0.5;
   padding: 0;
 
-  &:not([disabled]) {
-    cursor: pointer;
-  }
-
-  &:not([disabled]):hover {
+  &:hover {
     opacity: 1;
   }
 }

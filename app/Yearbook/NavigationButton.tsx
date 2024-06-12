@@ -3,19 +3,14 @@ import { useNavigationLabel } from "./hooks/useNavigationLabel";
 
 interface Props {
   direction: "Previous" | "Next";
-  onClick: (() => void) | undefined;
+  onClick: () => void;
 }
 
 export const NavigationButton = ({ direction, onClick }: Props) => {
   const label = useNavigationLabel(direction);
 
   return (
-    <button
-      className={styles.root}
-      disabled={!onClick}
-      onClick={onClick}
-      title={onClick ? label.value : undefined}
-    >
+    <button className={styles.root} onClick={onClick} title={label.value}>
       {label.character}
     </button>
   );
