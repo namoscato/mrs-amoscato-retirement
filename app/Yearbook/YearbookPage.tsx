@@ -2,9 +2,10 @@
 
 import { PickllleHeading } from "../PickllleHeading";
 import { schoolYearFromYear } from "../utils/schoolYearFromYear";
-import { CloseButton } from "./CloseButton";
+import { IconButton } from "./IconButton";
 import { MobileNavigationButton } from "./MobileNavigationButton";
 import { NavigationButton } from "./NavigationButton";
+import { SlideshowButton } from "./SlideshowButton";
 import { StyleSourceSummary } from "./StyleSourceSummary";
 import { StyledPortraitImage } from "./StyledPortraitImage";
 import styles from "./YearbookPage.module.scss";
@@ -14,9 +15,11 @@ import { Student } from "./utils/studentsFromImageDir";
 
 interface Props {
   student: Student;
-  onPrevious: (() => void) | undefined;
-  onNext: (() => void) | undefined;
+  onPrevious: () => void;
+  onNext: () => void;
   onClose: () => void;
+  isPlayingSlideshow: boolean;
+  onToggleSlideshow: () => void;
 }
 
 export const YearbookPage = ({
@@ -24,6 +27,8 @@ export const YearbookPage = ({
   onPrevious,
   onNext,
   onClose,
+  isPlayingSlideshow,
+  onToggleSlideshow,
 }: Props) => {
   useDisableScroll();
   useKeyboardNavigation({ onNext, onPrevious, onClose });
@@ -72,7 +77,15 @@ export const YearbookPage = ({
         <MobileNavigationButton direction="Previous" onClick={onPrevious} />
         <MobileNavigationButton direction="Next" onClick={onNext} />
       </div>
-      <CloseButton onClick={onClose} />
+      <div className={styles.actionButtons}>
+        <SlideshowButton
+          isPlaying={isPlayingSlideshow}
+          onClick={onToggleSlideshow}
+        />
+        <IconButton onClick={onClose} title="Close [ESC]">
+          ×
+        </IconButton>
+      </div>
     </div>
   );
 };

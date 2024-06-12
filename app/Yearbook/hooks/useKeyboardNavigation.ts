@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
 interface Props {
-  onPrevious: (() => void) | undefined;
-  onNext: (() => void) | undefined;
+  onPrevious: () => void;
+  onNext: () => void;
   onClose: () => void;
 }
 
@@ -15,10 +15,10 @@ export function useKeyboardNavigation({
     const handleKeydown = ({ key }: KeyboardEvent) => {
       switch (key) {
         case "ArrowLeft":
-          onPrevious?.();
+          onPrevious();
           break;
         case "ArrowRight":
-          onNext?.();
+          onNext();
           break;
         case "Escape":
           onClose();

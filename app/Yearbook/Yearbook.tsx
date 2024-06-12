@@ -1,13 +1,14 @@
 "use client";
 
 import clsx from "clsx";
-import { Suspense } from "react";
+import { Suspense, useCallback } from "react";
 import { Cover } from "../Cover";
 import { Navigation } from "../Navigation";
 import styles from "./Yearbook.module.css";
 import { YearbookPage } from "./YearbookPage";
 import { YearbookThumbnail } from "./YearbookThumbnail";
 import { useActiveIndexState } from "./hooks/useActiveIndexState";
+import { useSlideshow } from "./hooks/useSlideshow";
 import { Student } from "./utils/studentsFromImageDir";
 
 const STUDENT_SEARCH_PARAM = "student";
@@ -33,26 +34,45 @@ export const Yearbook = ({ students }: Props) => {
 };
 
 const YearbookRender = ({ students }: Props) => {
-  const activeIndex = useActiveIndexState({
-    students,
-    searchParam: STUDENT_SEARCH_PARAM,
+  const { setValue, student, previous, next, reset, shuffle } =
+    useActiveIndexState({
+      students,
+      searchParam: STUDENT_SEARCH_PARAM,
+    });
+
+  const { isPlaying, setIsPlaying } = useSlideshow({
+    onNext: next,
   });
 
-  const activeStudent = students[activeIndex.value];
+  const toggleSlideshow = () => {
+    if (isPlaying) {
+      setIsPlaying(false);
+    } else {
+      shuffle();
+      setIsPlaying(true);
+    }
+  };
+
+  const close = useCallback(() => {
+    reset();
+    setIsPlaying(false);
+  }, [reset, setIsPlaying]);
 
   return (
     <>
       <YearbookStaticContent
         students={students}
-        setActiveIndex={activeIndex.setValue}
-        isInactive={!!activeStudent}
+        setActiveIndex={setValue}
+        isInactive={!!student}
       />
-      {!!activeStudent && (
+      {!!student && (
         <YearbookPage
-          student={activeStudent}
-          onPrevious={activeIndex.previous}
-          onNext={activeIndex.next}
-          onClose={activeIndex.clear}
+          student={student}
+          onPrevious={previous}
+          onNext={next}
+          onClose={close}
+          isPlayingSlideshow={isPlaying}
+          onToggleSlideshow={toggleSlideshow}
         />
       )}
     </>

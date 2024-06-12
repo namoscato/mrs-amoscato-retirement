@@ -20,7 +20,6 @@ export const PickllleHeading = ({
   const defaultSettings = defaultFontSettingsFromComponent(component);
   const style: CSSProperties = {
     fontVariationSettings: `"COUT" ${cutout ?? defaultSettings.cutout}, "JMBL" ${jumble ?? defaultSettings.jumble}, "STGR" ${stagger ?? defaultSettings.stagger}`,
-    fontWeight: "normal",
   };
 
   return createElement(

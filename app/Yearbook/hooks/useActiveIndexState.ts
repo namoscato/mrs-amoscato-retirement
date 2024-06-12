@@ -1,69 +1,77 @@
+import { shuffle } from "lodash";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { Student } from "../utils/studentsFromImageDir";
 
 interface Props {
-  students: Pick<Student, "id">[];
+  students: Student[];
   searchParam: string;
 }
 
 interface Result {
   value: number;
   setValue: (value: number) => void;
-  previous: (() => void) | undefined;
-  next: (() => void) | undefined;
-  clear: () => void;
+  student: Student | undefined;
+  previous: () => void;
+  next: () => void;
+  shuffle: () => void;
+  reset: () => void;
 }
 
-export function useActiveIndexState({ students, searchParam }: Props): Result {
+export function useActiveIndexState(props: Props): Result {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  const [students, setStudents] = useState(props.students);
+
   const [index, setIndex] = useState(() =>
-    students.findIndex(({ id }) => id === searchParams.get(searchParam)),
+    students.findIndex(({ id }) => id === searchParams.get(props.searchParam)),
   );
   const setValue = useCallback(
     (value: number) => {
       setIndex(value);
 
       const studentId = students[value]?.id;
-      router.replace(studentId ? `?${searchParam}=${studentId}` : "/", {
+      router.replace(studentId ? `?${props.searchParam}=${studentId}` : "/", {
         scroll: false,
       });
     },
-    [router, searchParam, students],
+    [router, props.searchParam, students],
   );
 
-  const previous = useMemo(() => {
+  const previous = useCallback(() => {
     if (index <= 0) {
-      return;
-    }
-
-    return () => {
+      setValue(students.length - 1);
+    } else {
       setValue(index - 1);
-    };
-  }, [index, setValue]);
+    }
+  }, [index, setValue, students.length]);
 
   const max = students.length;
-  const next = useMemo(() => {
+  const next = useCallback(() => {
     if (index >= max - 1) {
-      return;
-    }
-
-    return () => {
+      setValue(0);
+    } else {
       setValue(index + 1);
-    };
+    }
   }, [index, max, setValue]);
 
-  const clear = useCallback(() => {
+  const shuffleStudents = useCallback(() => {
+    setStudents(shuffle(props.students));
+  }, [props.students]);
+
+  const reset = useCallback(() => {
     setValue(-1);
-  }, [setValue]);
+    setStudents(props.students);
+  }, [props.students, setValue]);
 
   return {
     value: index,
     setValue,
+    student: students[index],
     previous,
     next,
-    clear,
+    shuffle: shuffleStudents,
+    reset: reset,
   };
 }
