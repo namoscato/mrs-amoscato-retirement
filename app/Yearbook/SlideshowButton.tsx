@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { IconButton } from "./IconButton";
+import { NavigationIconButton } from "./NavigationIconButton";
 import styles from "./SlideshowButton.module.scss";
 
 interface Props {
@@ -12,7 +12,11 @@ export const SlideshowButton = ({ isPlaying, onClick }: Props) => {
   const character = isPlaying ? "=" : "»";
 
   return (
-    <IconButton onClick={onClick} title={title} jumble={200}>
+    <NavigationIconButton
+      className={styles.root}
+      onClick={onClick}
+      title={title}
+    >
       <span
         className={clsx(styles.character, {
           [styles.characterPause ?? ""]: isPlaying,
@@ -20,6 +24,6 @@ export const SlideshowButton = ({ isPlaying, onClick }: Props) => {
       >
         {character}
       </span>
-    </IconButton>
+    </NavigationIconButton>
   );
 };

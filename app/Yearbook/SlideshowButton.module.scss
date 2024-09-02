@@ -1,8 +1,12 @@
+.root {
+  font-size: 2.5em;
+}
+
 .character {
   display: inline-block;
 }
 
 .characterPause {
   font-size: 0.9em;
-  transform: rotate(90deg);
+  transform: rotate(90deg) translateY(8px);
 }

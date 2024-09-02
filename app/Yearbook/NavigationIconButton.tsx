@@ -1,32 +1,25 @@
 import clsx from "clsx";
-import { CSSProperties, ReactNode } from "react";
-import styles from "./IconButton.module.scss";
+import { ReactNode } from "react";
+import styles from "./NavigationIconButton.module.scss";
 
 interface Props {
   children: ReactNode;
+  title: string;
   onClick: () => void;
-  title?: string;
-  jumble?: number;
   className?: string;
 }
 
-export const IconButton = ({
+export const NavigationIconButton = ({
   children,
-  onClick,
   title,
-  jumble = 300,
+  onClick,
   className,
 }: Props) => {
-  const style: CSSProperties = {
-    fontVariationSettings: `"COUT" 200, "JMBL" ${jumble}, "STGR" 100`,
-  };
-
   return (
     <button
       className={clsx(styles.root, className)}
       onClick={onClick}
       title={title}
-      style={style}
     >
       {children}
     </button>
