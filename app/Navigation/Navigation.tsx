@@ -19,6 +19,9 @@ export const Navigation = ({ className }: Props) => {
         <li>
           <NavigationLink href="/painting" text="Painting" />
         </li>
+        <li>
+          <NavigationLink href="/about" text="About" />
+        </li>
       </ul>
     </nav>
   );

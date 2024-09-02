@@ -1,0 +1,16 @@
+.image {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.imageBordered {
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 75rem) {
+  .image {
+    margin-left: calc(50% - var(--max-width) / 2);
+  }
+}

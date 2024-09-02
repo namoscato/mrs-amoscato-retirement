@@ -1,0 +1,18 @@
+.root {
+  background: #3d7b44 url("/images/redesign_chalkboard.jpg") center center /
+    cover no-repeat;
+  padding: 3rem 0 4rem;
+}
+
+.image {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+@media screen and (min-width: 75rem) {
+  .image {
+    margin-left: calc(50% - var(--max-width) / 2);
+  }
+}
