@@ -3,12 +3,17 @@
     "Amoscato",
     "carle",
     "clsx",
+    "debossed",
     "Espe",
+    "Flickr",
     "Liestman",
     "Lightbox",
+    "Photoshop",
     "pickllle",
+    "subpage",
     "tinify",
-    "unoptimized"
+    "unoptimized",
+    "unsustainably"
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[python]": {
