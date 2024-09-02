@@ -59,6 +59,10 @@ export const YearbookPage = ({
               <div className={styles.navigationButtons}>
                 <NavigationButton direction="Previous" onClick={onPrevious} />
                 <NavigationButton direction="Next" onClick={onNext} />
+                <SlideshowButton
+                  isPlaying={isPlayingSlideshow}
+                  onClick={onToggleSlideshow}
+                />
               </div>
               <PickllleHeading component="h2">
                 {student.school} School
@@ -77,15 +81,13 @@ export const YearbookPage = ({
         <MobileNavigationButton direction="Previous" onClick={onPrevious} />
         <MobileNavigationButton direction="Next" onClick={onNext} />
       </div>
-      <div className={styles.actionButtons}>
-        <SlideshowButton
-          isPlaying={isPlayingSlideshow}
-          onClick={onToggleSlideshow}
-        />
-        <IconButton onClick={onClose} title="Close [ESC]">
-          ×
-        </IconButton>
-      </div>
+      <IconButton
+        onClick={onClose}
+        title="Close [ESC]"
+        className={styles.closeButton}
+      >
+        ×
+      </IconButton>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import styles from "./NavigationButton.module.scss";
+import { NavigationIconButton } from "./NavigationIconButton";
 import { useNavigationLabel } from "./hooks/useNavigationLabel";
 
 interface Props {
@@ -10,8 +10,8 @@ export const NavigationButton = ({ direction, onClick }: Props) => {
   const label = useNavigationLabel(direction);
 
   return (
-    <button className={styles.root} onClick={onClick} title={label.value}>
+    <NavigationIconButton onClick={onClick} title={label.value}>
       {label.character}
-    </button>
+    </NavigationIconButton>
   );
 };
